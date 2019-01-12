@@ -80,3 +80,4 @@ A new menu item called "Multitenancy" will appear in your Nova app after install
 - [ ] define adding BelongsTo to relational data
 - [ ] extending the Nova Tenant resource to include relational data (reverse relationship definition)
 - [ ] add vyuldashev/nova-permission as a dependency
+- [ ] find a better sidebar navigation icon
