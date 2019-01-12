@@ -26,8 +26,6 @@ Next up, you must register the tool with Nova. This is typically done in the `to
 ```php
 // in app/Providers/NovaServiceProvider.php
 
-// ...
-
 public function tools()
 {
     return [
@@ -41,8 +39,6 @@ Finally, add a `BelongsToMany` fields to you `app/Nova/User` resource:
 
 ```php
 // in app/Nova/User.php
-
-// ...
 
 use Laravel\Nova\Fields\BelongsToMany;
 
