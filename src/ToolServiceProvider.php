@@ -24,9 +24,6 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-        // Gate::policy(config('multitenancy.tenant_model'), PermissionPolicy::class);
-        // Gate::policy(config('multitenancy.user_model'), UserPolicy::class);
-
         Nova::serving(function (ServingNova $event) {
             //
         });
@@ -42,10 +39,6 @@ class ToolServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
-
-        Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/multitenancy-nova-tool')
-                ->group(__DIR__.'/../routes/api.php');
     }
 
     /**
