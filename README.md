@@ -9,7 +9,8 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
   - [Middleware](#middleware)
   - [Usage](#usage)
 
-![screenshot 1](https://)
+![index](https://raw.githubusercontent.com/bradenkeith/MultitenancyNovaTool/master/docs/index.png)
+![create](https://raw.githubusercontent.com/bradenkeith/MultitenancyNovaTool/master/docs/create.png)
 
 ## Installation
 
@@ -75,7 +76,7 @@ A new menu item called "Multitenancy" will appear in your Nova app after install
 
 ## To Do
 
-- [ ] add screenshots
+- [x] add screenshots
 - [ ] define adding permissions
 - [ ] define adding BelongsTo to relational data
 - [ ] extending the Nova Tenant resource to include relational data (reverse relationship definition)
