@@ -8,6 +8,7 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
   - [Installation](#installation)
   - [Middleware](#middleware)
   - [Usage](#usage)
+  - [To Do](#to-do)
 
 ![index](https://raw.githubusercontent.com/bradenkeith/MultitenancyNovaTool/master/docs/index.png)
 
@@ -49,6 +50,20 @@ public function fields(Request $request)
     return [
         // ...
         BelongsToMany::make('Tenants', 'tenants', \RomegaDigital\MultitenancyNovaTool\Tenant::class),
+    ];
+}
+```
+
+Also don't forget to add a `BelongsTo` field to all resources whose models do use the `BelongsToTenant` Trait:
+
+```php
+use Laravel\Nova\Fields\BelongsTo;
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        BelongsTo::make('Tenants', 'tenant', \RomegaDigital\MultitenancyNovaTool\Tenant::class),
     ];
 }
 ```
