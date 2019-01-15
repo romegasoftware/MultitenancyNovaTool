@@ -14,9 +14,8 @@ class MultitenancyNovaTool extends Tool
      */
     public function boot()
     {
-        Nova::resources([
-            Tenant::class,
-        ]);
+        Nova::script('multitenancy-tool', __DIR__ . '/../dist/js/tool.js');
+        Nova::style('multitenancy-tool', __DIR__ . '/../dist/css/tool.css');
     }
 
     /**
@@ -26,6 +25,6 @@ class MultitenancyNovaTool extends Tool
      */
     public function renderNavigation()
     {
-        return view('multitenancy-nova-tool::navigation');
+        return view('multitenancy-tool::navigation');
     }
 }

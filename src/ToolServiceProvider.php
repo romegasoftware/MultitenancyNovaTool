@@ -2,7 +2,6 @@
 
 namespace RomegaDigital\MultitenancyNovaTool;
 
-use Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
@@ -18,14 +17,16 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'multitenancy-nova-tool');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'multitenancy-tool');
 
         $this->app->booted(function () {
             $this->routes();
         });
 
         Nova::serving(function (ServingNova $event) {
-            //
+            Nova::resources([
+                Tenant::class,
+            ]);
         });
     }
 
@@ -39,6 +40,10 @@ class ToolServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
+
+        Route::middleware(['nova', Authorize::class])
+                ->prefix('nova-vendor/multitenancy-tool')
+                ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**
