@@ -6,6 +6,7 @@ use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsToMany;
 
 class Tenant extends Resource
@@ -43,7 +44,13 @@ class Tenant extends Resource
      */
     public function fields(Request $request)
     {
-        return [
+        $hasManyFields = collect(config('multitenancy.tenant_has_many_relations'))
+            ->map(function ($class, $key) {
+                return HasMany::make(ucfirst($key), $key, '\App\Nova\\' . class_basename($class));
+            })
+            ->toArray();
+
+        return array_merge([
             ID::make()->sortable(),
 
             Text::make('Domain')->sortable()
@@ -53,7 +60,7 @@ class Tenant extends Resource
                 ->rules('required'),
 
             BelongsToMany::make('Users', 'users', \App\Nova\User::class),
-        ];
+        ], $hasManyFields);
     }
 
     /**
