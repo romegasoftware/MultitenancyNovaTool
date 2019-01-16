@@ -2,17 +2,10 @@
 
 namespace RomegaDigital\MultitenancyNovaTool;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphToMany;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
-use Spatie\Permission\PermissionRegistrar;
+use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
 
 class Tenant extends Resource
 {
