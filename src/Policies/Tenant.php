@@ -3,6 +3,7 @@
 namespace RomegaDigital\MultitenancyNovaTool\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Cache;
 
 class Tenant
 {
@@ -16,42 +17,8 @@ class Tenant
      */
     public function viewAny($user)
     {
-        $userClass = config('multitenancy.user_model');
-
-        if (!$user instanceof $userClass) {
-            return false;
-        }
-
-        return $user->can('access admin');
-    }
-
-    public function view()
-    {
-        return true;
-    }
-
-    public function create()
-    {
-        return true;
-    }
-
-    public function update()
-    {
-        return true;
-    }
-
-    public function delete()
-    {
-        return true;
-    }
-
-    public function restore()
-    {
-        return true;
-    }
-
-    public function forceDelete()
-    {
-        return true;
+        return Cache::remember('tenant-policy:' . $user->id, 5, function () use ($user) {
+            return $user->can('access admin');
+        });
     }
 }
