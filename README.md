@@ -6,8 +6,8 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
 
 - [Multitenancy Nova Tool](#multitenancy-nova-tool)
   - [Installation](#installation)
-  - [Middleware](#middleware)
   - [Usage](#usage)
+  - [Middleware](#middleware)
   - [To Do](#to-do)
 
 ![index](https://user-images.githubusercontent.com/10154100/51168828-aa2b9280-18aa-11e9-9ed8-611888042bb1.png)
@@ -38,7 +38,23 @@ public function tools()
 }
 ```
 
-Finally, add a `BelongsToMany` fields to you `app/Nova/User` resource:
+Our package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our assign super-admin command.
+
+**hint**
+If you already executed `multitenancy:install` a role with the name `Super Administrator` who has a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
+
+```bash
+php artisan multitenancy:super-admin admin@email.com
+```
+
+**warning**
+If you don't add the required role to a user you won't be able to use the Multitenancy-Tool within nova.
+
+## Usage
+
+A new menu item called "Multitenancy" && "Roles & Permissions" will appear in your Nova app after installing this package.
+
+To see the tenant relation in the user detail view, add a `BelongsToMany` fields to you `app/Nova/User` resource:
 
 ```php
 // in app/Nova/User.php
@@ -54,7 +70,7 @@ public function fields(Request $request)
 }
 ```
 
-Also don't forget to add a `BelongsTo` field to all resources whose models do use the `BelongsToTenant` Trait:
+On each nova resource that is tenantable a `BelongsTo`-Field is required in order to see the relation to our `Tenant`-Model:
 
 ```php
 use Laravel\Nova\Fields\BelongsTo;
@@ -84,10 +100,6 @@ To scope Nova results to the tenant being utilized, add the middleware to Nova:
 ```
 
 Accessing Nova at the `admin` subdomain will remove scopes and display all results. Only users given the correct permissions will be able to access this subdomain.
-
-## Usage
-
-A new menu item called "Multitenancy" will appear in your Nova app after installing this package.
 
 
 ## To Do
