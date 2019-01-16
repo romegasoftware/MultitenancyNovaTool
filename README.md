@@ -7,6 +7,7 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
 - [Multitenancy Nova Tool](#multitenancy-nova-tool)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Define Reverse Relationships](#define-reverse-relationships)
   - [Middleware](#middleware)
   - [To Do](#to-do)
 
@@ -80,6 +81,30 @@ public function fields(Request $request)
     return [
         // ...
         BelongsTo::make('Tenants', 'tenant', \RomegaDigital\MultitenancyNovaTool\Tenant::class),
+    ];
+}
+```
+
+## Define Reverse Relationships
+
+In order to display all related data to our `Tenant`-Model, you need to define the reverse relationships in the `multitenancy` config.
+
+```php
+'tenant_has_many_relations' => [
+    'products' => \App\Product::class
+],
+```
+
+The key is used to identify the name for the relationship. If you add `products` like in the example above it will result in adding a `HasMany`-field to the `Tenant`-resource:
+
+```php
+use Laravel\Nova\Fields\HasMany;
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        HasMany::make('Products', 'products', \App\Nova\Product::class),
     ];
 }
 ```
