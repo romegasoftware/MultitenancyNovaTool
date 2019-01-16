@@ -29,10 +29,6 @@ class ToolServiceProvider extends ServiceProvider
             Nova::tools([
                 new \Vyuldashev\NovaPermission\NovaPermissionTool,
             ]);
-
-            Nova::resources([
-                Tenant::class,
-            ]);
         });
 
         Gate::policy(config('multitenancy.tenant_model'), TenantPolicy::class);

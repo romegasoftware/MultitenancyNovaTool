@@ -2,6 +2,7 @@
 
 namespace RomegaDigital\MultitenancyNovaTool;
 
+use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
 class MultitenancyNovaTool extends Tool
@@ -13,7 +14,9 @@ class MultitenancyNovaTool extends Tool
      */
     public function boot()
     {
-        //
+        Nova::resources([
+            Tenant::class,
+        ]);
     }
 
     /**
