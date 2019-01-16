@@ -11,9 +11,9 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
   - [Middleware](#middleware)
   - [To Do](#to-do)
 
-![index](https://user-images.githubusercontent.com/10154100/51168828-aa2b9280-18aa-11e9-9ed8-611888042bb1.png)
+![index](https://user-images.githubusercontent.com/10154100/51259066-b21f2b80-19ab-11e9-8fac-b3ee5c20c1c2.png)
 
-![create](https://user-images.githubusercontent.com/10154100/51168820-a566de80-18aa-11e9-951d-b70c2553524b.png)
+![create](https://user-images.githubusercontent.com/10154100/51259176-e85cab00-19ab-11e9-89e4-3474d38504dd.png)
 
 ## Installation
 
