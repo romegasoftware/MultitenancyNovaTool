@@ -6,6 +6,7 @@ use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Tenant extends Resource
 {
@@ -50,6 +51,8 @@ class Tenant extends Resource
 
             Text::make('Name')->sortable()
                 ->rules('required'),
+
+            BelongsToMany::make('Users', 'users', \App\Nova\User::class),
         ];
     }
 
