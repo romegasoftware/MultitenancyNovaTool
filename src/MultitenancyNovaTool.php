@@ -26,6 +26,6 @@ class MultitenancyNovaTool extends Tool
      */
     public function renderNavigation()
     {
-        return view('multitenancy-nova-tool::navigation');
+        return view('multitenancy-tool::navigation');
     }
 }
