@@ -156,7 +156,7 @@ To scope Nova results to the tenant being utilized, add the middleware to Nova:
 
 'middleware' => [
     // ...
-    \RomegaDigital\Multitenancy\Middlewares\TenantMiddleware::class,
+    \RomegaDigital\Multitenancy\Middleware\TenantMiddleware::class,
 ],
 ```
 
