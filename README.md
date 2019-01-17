@@ -41,8 +41,6 @@ public function tools()
 
 Our package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/bradenkeith/Multitenancy#console-commands).
 
----
-
 > **hint**
 > If you already executed `multitenancy:install`, a role with the name `Super Administrator` who has a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
 > ```bash
