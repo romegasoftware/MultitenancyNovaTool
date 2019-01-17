@@ -17,7 +17,7 @@ class Tenant
      */
     public function viewAny($user)
     {
-        return Cache::remember('tenant-policy:' . $user->id, 10, function () {
+        return Cache::remember('tenant-policy:' . $user->id, 10, function () use ($user) {
             return $user->can('access admin');
         });
     }
