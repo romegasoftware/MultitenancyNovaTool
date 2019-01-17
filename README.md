@@ -83,25 +83,65 @@ public function fields(Request $request)
 
 ## Define Inverse Relationships
 
-In order to display all related data to our `Tenant` model, you need to define the inverse relationships in the `multitenancy` config.
+In order to display all related data to our `Tenant` model, you need to first implement a `Tenant` model that extends the package's provided model.
 
 ```php
-'tenant_has_many_relations' => [
-    'products' => \App\Product::class
-],
+// in app/Tenant.php
+
+namespace App\Nova;
+
+use RomegaDigital\Multitenancy\Models\Tenant as TenantModel;
+use RomegaDigital\Multitenancy\Traits\BelongsToTenant;
+
+class Tenant extends TenantModel
+{
+  // ... define relationships
+  public function products()
+  {
+    return $this->hasMany(\App\Product::class);
+  }
+}
 ```
 
-The key is used to identify the name for the relationship. If you add `products`, like in the example above, it will result in adding a `HasMany` field to the `Tenant` resource:
+Next, update your config file to point to your new model.
 
 ```php
-use Laravel\Nova\Fields\HasMany;
+// in config/multitenancy.php
 
-public function fields(Request $request)
+// ...
+'tenant_model' => \App\Tenant::class,
+```
+
+Then create a Tenant Nova resource that extends the package's resource.
+
+```php
+// in app/Nova/Tenant.php
+
+namespace App\Nova;
+
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
+use RomegaDigital\MultitenancyNovaTool\Tenant as TenantResource;
+
+class Tenant extends TenantResource
 {
-    return [
-        // ...
-        HasMany::make('Products', 'products', \App\Nova\Product::class),
-    ];
+  public static $model = \App\Tenant::class;
+
+  /**
+   * Get the fields displayed by the resource.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return array
+   */
+  public function fields(Request $request)
+  {
+    return array_merge(parent::fields($request),
+    [
+      // ... define relationships
+      HasMany::make('Products'),
+    ]);
+  }
+
 }
 ```
 
@@ -128,8 +168,8 @@ Accessing Nova at the `admin` subdomain will remove scopes and display all resul
 - [x] add screenshots
 - [x] define adding permissions
 - [x] define adding BelongsTo to relational data
-- [ ] extending the Nova Tenant resource to include relational data (inverse relationship definition)
+- [x] extending the Nova Tenant resource to include relational data (inverse relationship definition)
 - [X] add vyuldashev/nova-permission as a dependency
-- [ ] add romegadigital/multitenancy as a dependency
 - [x] find a better sidebar navigation icon
-- [ ] add documentation around defining access policies
+- [ ] add romegadigital/multitenancy as a dependency
+- [ ] add documentation around defining access policies (revisit current definition of allowing all CRUD operations)
