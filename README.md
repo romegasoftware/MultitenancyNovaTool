@@ -7,7 +7,7 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
 - [Multitenancy Nova Tool](#multitenancy-nova-tool)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Define Reverse Relationships](#define-reverse-relationships)
+  - [Define Inverse Relationships](#define-inverse-relationships)
   - [Middleware](#middleware)
   - [To Do](#to-do)
 
@@ -39,21 +39,20 @@ public function tools()
 }
 ```
 
-Our package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our assign super-admin command.
+Our package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/bradenkeith/Multitenancy#console-commands).
 
-**hint**
-If you already executed `multitenancy:install` a role with the name `Super Administrator` who has a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
+---
 
-```bash
-php artisan multitenancy:super-admin admin@email.com
-```
+> **hint**
+> If you already executed `multitenancy:install`, a role with the name `Super Administrator` who has a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
 
-**warning**
-If you don't add the required role to a user you won't be able to use the Multitenancy-Tool within nova.
+> ```bash
+> php artisan multitenancy:super-admin admin@email.com
+> ```
 
 ## Usage
 
-A new menu item called "Multitenancy" && "Roles & Permissions" will appear in your Nova app after installing this package.
+A new menu item called "Multitenancy" & "Roles & Permissions" will appear in your Nova app after installing this package.
 
 To see the tenant relation in the user detail view, add a `BelongsToMany` fields to you `app/Nova/User` resource:
 
@@ -71,7 +70,7 @@ public function fields(Request $request)
 }
 ```
 
-On each nova resource that is tenantable a `BelongsTo`-Field is required in order to see the relation to our `Tenant`-Model:
+On each nova resource that is tenantable, a `BelongsTo` field is required in order to see the relation to our `Tenant` model:
 
 ```php
 use Laravel\Nova\Fields\BelongsTo;
@@ -85,9 +84,9 @@ public function fields(Request $request)
 }
 ```
 
-## Define Reverse Relationships
+## Define Inverse Relationships
 
-In order to display all related data to our `Tenant`-Model, you need to define the reverse relationships in the `multitenancy` config.
+In order to display all related data to our `Tenant` model, you need to define the inverse relationships in the `multitenancy` config.
 
 ```php
 'tenant_has_many_relations' => [
@@ -95,7 +94,7 @@ In order to display all related data to our `Tenant`-Model, you need to define t
 ],
 ```
 
-The key is used to identify the name for the relationship. If you add `products` like in the example above it will result in adding a `HasMany`-field to the `Tenant`-resource:
+The key is used to identify the name for the relationship. If you add `products`, like in the example above, it will result in adding a `HasMany` field to the `Tenant` resource:
 
 ```php
 use Laravel\Nova\Fields\HasMany;
@@ -130,8 +129,10 @@ Accessing Nova at the `admin` subdomain will remove scopes and display all resul
 ## To Do
 
 - [x] add screenshots
-- [ ] define adding permissions
-- [ ] define adding BelongsTo to relational data
-- [ ] extending the Nova Tenant resource to include relational data (reverse relationship definition)
-- [ ] add vyuldashev/nova-permission as a dependency
-- [ ] find a better sidebar navigation icon
+- [x] define adding permissions
+- [x] define adding BelongsTo to relational data
+- [ ] extending the Nova Tenant resource to include relational data (inverse relationship definition)
+- [X] add vyuldashev/nova-permission as a dependency
+- [ ] add romegadigital/multitenancy as a dependency
+- [x] find a better sidebar navigation icon
+- [ ] add documentation around defining access policies
