@@ -52,7 +52,8 @@ class Tenant extends Resource
             Text::make('Name')->sortable()
                 ->rules('required'),
 
-            BelongsToMany::make('Users', 'users', \App\Nova\User::class),
+            BelongsToMany::make('Users', 'users', \App\Nova\User::class)
+                ->searchable(),
         ];
     }
 
