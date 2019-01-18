@@ -10,7 +10,7 @@ use Laravel\Nova\Nova;
 use RomegaDigital\MultitenancyNovaTool\Http\Middleware\Authorize;
 use RomegaDigital\MultitenancyNovaTool\Policies\PermissionPolicy;
 use RomegaDigital\MultitenancyNovaTool\Policies\RolePolicy;
-use RomegaDigital\MultitenancyNovaTool\Policies\Tenant as TenantPolicy;
+use RomegaDigital\MultitenancyNovaTool\Policies\TenantPolicy;
 
 class ToolServiceProvider extends ServiceProvider
 {
