@@ -3,11 +3,13 @@
 namespace RomegaDigital\MultitenancyNovaTool;
 
 use Gate;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 use RomegaDigital\MultitenancyNovaTool\Http\Middleware\Authorize;
+use RomegaDigital\MultitenancyNovaTool\Policies\PermissionPolicy;
+use RomegaDigital\MultitenancyNovaTool\Policies\RolePolicy;
 use RomegaDigital\MultitenancyNovaTool\Policies\Tenant as TenantPolicy;
 
 class ToolServiceProvider extends ServiceProvider
@@ -32,6 +34,8 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Gate::policy(config('multitenancy.tenant_model'), TenantPolicy::class);
+        Gate::policy(config('permission.models.permission'), PermissionPolicy::class);
+        Gate::policy(config('permission.models.role'), RolePolicy::class);
     }
 
     /**
