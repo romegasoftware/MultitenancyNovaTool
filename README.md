@@ -9,6 +9,7 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
   - [Usage](#usage)
   - [Define Inverse Relationships](#define-inverse-relationships)
   - [Middleware](#middleware)
+  - [Policies](#policies)
   - [To Do](#to-do)
 
 ![index](https://user-images.githubusercontent.com/10154100/51259066-b21f2b80-19ab-11e9-8fac-b3ee5c20c1c2.png)
@@ -162,6 +163,21 @@ To scope Nova results to the tenant being utilized, add the middleware to Nova:
 
 Accessing Nova at the `admin` subdomain will remove scopes and display all results. Only users given the correct permissions will be able to access this subdomain.
 
+## Policies
+
+By default, the Multitenancy resource will only be visible on the `admin` subdomain to users with appropriate access to this subdomain. You may override the policy to allow more access to the resource by defining a policy within your project. And then within your `AuthServiceProvider`, register the policy:
+
+```php
+// in app/Providers/AuthServiceProvider.php
+
+// ...
+protected $policies = [
+  // ...
+  \RomegaDigital\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
+];
+```
+
+
 
 ## To Do
 
@@ -172,4 +188,4 @@ Accessing Nova at the `admin` subdomain will remove scopes and display all resul
 - [X] add vyuldashev/nova-permission as a dependency
 - [x] find a better sidebar navigation icon
 - [ ] add romegadigital/multitenancy as a dependency
-- [ ] add documentation around defining access policies (revisit current definition of allowing all CRUD operations)
+- [x] add documentation around defining access policies (revisit current definition of allowing all CRUD operations)
