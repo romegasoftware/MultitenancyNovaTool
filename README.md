@@ -177,6 +177,7 @@ protected $policies = [
 ];
 ```
 
+> **hint** You can also override the Permission and Role model's policy to be visible outside of the `admin` subdomain, which this package enforces by default.
 
 
 ## To Do
