@@ -18,15 +18,15 @@ This package automatically includes the Multitenancy Package as a dependency. Pl
 
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ``` bash
 composer require romegadigital/multitenancy-nova-tool
 ```
 
-Go through the [Installation](https://github.com/bradenkeith/Multitenancy#installation) section in order to setup the [Multitenancy Package](https://packagist.org/packages/spatie/laravel-permission).
+Then follow the [Installation](https://github.com/bradenkeith/Multitenancy#installation) instructions to set up the Multitenancy Package.
 
-Next up, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
+Next, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
 
 ```php
 // in app/Providers/NovaServiceProvider.php
@@ -40,19 +40,19 @@ public function tools()
 }
 ```
 
-Our package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/bradenkeith/Multitenancy#console-commands).
+This package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/bradenkeith/Multitenancy#console-commands).
 
-> **hint**
-> If you already executed `multitenancy:install`, a role with the name `Super Administrator` who has a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
+> **Hint**
+> If you already executed `multitenancy:install`, a role with the name `Super Administrator` and a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
 > ```bash
 > php artisan multitenancy:super-admin admin@example.com
 > ```
 
 ## Usage
 
-A new menu item called "Multitenancy" & "Roles & Permissions" will appear in your Nova app after installing this package.
+New menu items labelled "Multitenancy" and "Roles & Permissions" will appear in your Nova app after installing this package.
 
-To see the tenant relation in the user detail view, add a `BelongsToMany` fields to you `app/Nova/User` resource:
+To see the Tenant relation in the user detail view, add a `BelongsToMany` field to your `app/Nova/User` resource:
 
 ```php
 // in app/Nova/User.php
@@ -68,7 +68,7 @@ public function fields(Request $request)
 }
 ```
 
-On each nova resource that is tenantable, a `BelongsTo` field is required in order to see the relation to our `Tenant` model:
+On each Nova resource that is tenantable, a `BelongsTo` field is required in order to see the relation to the `Tenant` model:
 
 ```php
 use Laravel\Nova\Fields\BelongsTo;
@@ -84,7 +84,7 @@ public function fields(Request $request)
 
 ## Define Inverse Relationships
 
-In order to display all related data to our `Tenant` model, you need to first implement a `Tenant` model that extends the package's provided model.
+In order to display all related data to the `Tenant` model, you need to first implement a `Tenant` model that extends the package's provided model.
 
 ```php
 // in app/Tenant.php
@@ -148,7 +148,7 @@ class Tenant extends TenantResource
 
 ## Middleware
 
-To scope Nova results to the tenant being utilized, add the middleware to Nova:
+To scope Nova results to the Tenant being utilized, add the middleware to Nova:
 
 ```php
 // in config/nova.php
@@ -161,7 +161,7 @@ To scope Nova results to the tenant being utilized, add the middleware to Nova:
 ],
 ```
 
-Accessing Nova at the `admin` subdomain will remove scopes and display all results. Only users given the correct permissions will be able to access this subdomain.
+Accessing Nova at the `admin` subdomain will remove scopes and display all results. Only users given the correct permissions, such as `Super Administrator`, will be able to access this subdomain.
 
 ## Policies
 
@@ -177,7 +177,8 @@ protected $policies = [
 ];
 ```
 
-> **hint** You can also override the Permission and Role model's policy to be visible outside of the `admin` subdomain, which this package enforces by default.
+> **Hint**
+> You can also override the Permission and Role model's policy to be visible outside of the `admin` subdomain, which this package enforces by default.
 
 
 ## To Do
