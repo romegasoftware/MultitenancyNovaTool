@@ -1,6 +1,6 @@
 # Multitenancy Nova Tool
 
-This package is meant to integrate with the [Multitenancy Package](https://github.com/bradenkeith/Multitenancy) to bring multitenancy functionality and management to [Laravel's Nova](https://nova.laravel.com).
+This package is meant to integrate with the [Multitenancy Package](https://github.com/romegadigital/Multitenancy) to bring multitenancy functionality and management to [Laravel's Nova](https://nova.laravel.com).
 
 This package automatically includes the Multitenancy Package as a dependency. Please read the documentation on how to integrate it with your existing app.
 
@@ -24,7 +24,7 @@ Install the package via Composer:
 composer require romegadigital/multitenancy-nova-tool
 ```
 
-Then follow the [Installation](https://github.com/bradenkeith/Multitenancy#installation) instructions to set up the Multitenancy Package.
+Then follow the [Installation](https://github.com/romegadigital/Multitenancy#installation) instructions to set up the Multitenancy Package.
 
 Next, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
 
@@ -40,7 +40,7 @@ public function tools()
 }
 ```
 
-This package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/bradenkeith/Multitenancy#console-commands).
+This package requires `Super Administrator` or `access admin` permissions. This can be added either through the included permission management tool under "Roles & Permissions" or through our [assign super-admin command](https://github.com/romegadigital/Multitenancy#console-commands).
 
 > **Hint**
 > If you already executed `multitenancy:install`, a role with the name `Super Administrator` and a permission `access admin` attached was already created. Therefore you only need to add the role to a user.
