@@ -179,15 +179,3 @@ protected $policies = [
 
 > **Hint**
 > You can also override the Permission and Role model's policy to be visible outside of the `admin` subdomain, which this package enforces by default.
-
-
-## To Do
-
-- [x] add screenshots
-- [x] define adding permissions
-- [x] define adding BelongsTo to relational data
-- [x] extending the Nova Tenant resource to include relational data (inverse relationship definition)
-- [X] add vyuldashev/nova-permission as a dependency
-- [x] find a better sidebar navigation icon
-- [ ] add romegadigital/multitenancy as a dependency
-- [x] add documentation around defining access policies (revisit current definition of allowing all CRUD operations)
