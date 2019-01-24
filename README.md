@@ -1,5 +1,7 @@
 # Multitenancy Nova Tool
 
+[![Total Downloads](https://img.shields.io/packagist/dt/romegadigital/multitenancy-nova-tool.svg?style=flat-square)](https://packagist.org/packages/romegadigital/multitenancy-nova-tool)
+
 This package is meant to integrate with the [Multitenancy Package](https://github.com/romegadigital/Multitenancy) to bring multitenancy functionality and management to [Laravel's Nova](https://nova.laravel.com).
 
 This package automatically includes the Multitenancy Package as a dependency. Please read the documentation on how to integrate it with your existing app.
