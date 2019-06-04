@@ -4,6 +4,7 @@ namespace RomegaDigital\MultitenancyNovaTool\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Spatie\Permission\Contracts\Role;
 
 class RolePolicy
 {
