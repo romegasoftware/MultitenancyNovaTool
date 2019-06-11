@@ -91,18 +91,17 @@ In order to display all related data to the `Tenant` model, you need to first im
 ```php
 // in app/Tenant.php
 
-namespace App\Nova;
+namespace App;
 
 use RomegaDigital\Multitenancy\Models\Tenant as TenantModel;
-use RomegaDigital\Multitenancy\Traits\BelongsToTenant;
 
 class Tenant extends TenantModel
 {
   // ... define relationships
-  public function products()
-  {
-    return $this->hasMany(\App\Product::class);
-  }
+    public function products()
+    {
+        return $this->hasMany(\App\Product::class);
+    }
 }
 ```
 
@@ -128,22 +127,22 @@ use RomegaDigital\MultitenancyNovaTool\Tenant as TenantResource;
 
 class Tenant extends TenantResource
 {
-  public static $model = \App\Tenant::class;
+    public static $model = \App\Tenant::class;
 
-  /**
-   * Get the fields displayed by the resource.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return array
-   */
-  public function fields(Request $request)
-  {
-    return array_merge(parent::fields($request),
-    [
-      // ... define relationships
-      HasMany::make('Products'),
-    ]);
-  }
+    /**
+    * Get the fields displayed by the resource.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return array
+    */
+    public function fields(Request $request)
+    {
+        return array_merge(parent::fields($request),
+        [
+            // ... define relationships
+            HasMany::make('Products'),
+        ]);
+    }
 
 }
 ```
@@ -175,7 +174,7 @@ By default, the Multitenancy resource will only be visible on the `admin` subdom
 // ...
 protected $policies = [
   // ...
-  \RomegaDigital\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
+    \RomegaDigital\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
 ];
 ```
 
