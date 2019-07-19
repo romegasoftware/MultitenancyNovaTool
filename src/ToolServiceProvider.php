@@ -29,7 +29,9 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::tools([
-                new \Vyuldashev\NovaPermission\NovaPermissionTool,
+                \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+                ->roleResource(config('multitenancy.custom_resources.role') ?: \Vyuldashev\NovaPermission\Role::class)
+                ->permissionResource(config('multitenancy.custom_resources.permission') ?: \Vyuldashev\NovaPermission\Permission::class),
             ]);
         });
 
