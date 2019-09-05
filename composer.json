@@ -1,14 +1,16 @@
 {
     "name": "romegadigital/multitenancy-nova-tool",
-    "description": "A Laravel Nova tool.",
+    "description": "A Laravel Nova tool to manage multitenancy.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "multitenancy"
     ],
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "vyuldashev/nova-permission": "^1.9"
+        "romegadigital/multitenancy": "^2.1",
+        "vyuldashev/nova-permission": "^2.1"
     },
     "autoload": {
         "psr-4": {

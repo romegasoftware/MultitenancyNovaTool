@@ -2,43 +2,45 @@
 
 namespace RomegaDigital\MultitenancyNovaTool\Policies;
 
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Spatie\Permission\Contracts\Role;
 
 class RolePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(): bool
+    public function viewAny(User $user): bool
     {
         return false;
     }
 
-    public function view(): bool
+    public function view(User $user, Role $role): bool
     {
         return false;
     }
 
-    public function create(): bool
+    public function create(User $user): bool
     {
         return false;
     }
 
-    public function update(): bool
+    public function update(User $user, Role $role): bool
     {
         return false;
     }
 
-    public function delete(): bool
+    public function delete(User $user, Role $role): bool
     {
         return false;
     }
 
-    public function restore(): bool
+    public function restore(User $user, Role $role): bool
     {
         return false;
     }
 
-    public function forceDelete(): bool
+    public function forceDelete(User $user, Role $role): bool
     {
         return false;
     }
