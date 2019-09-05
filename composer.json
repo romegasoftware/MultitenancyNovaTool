@@ -9,8 +9,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "romegadigital/multitenancy": "dev-master",
-        "vyuldashev/nova-permission": "^1.4"
+        "romegadigital/multitenancy": "^2.1",
+        "vyuldashev/nova-permission": "^2.1"
     },
     "autoload": {
         "psr-4": {
