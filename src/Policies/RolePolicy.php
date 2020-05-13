@@ -10,38 +10,43 @@ class RolePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function before(User $user)
+    {
+        if ($user->hasAnyRole([config('multitenancy.roles.super_admin')])) {
+            return true;
+        }
+    }
+
+    public function viewAny(User $user)
+    {
+        return true;
+    }
+
+    public function view(User $user, Role $role)
+    {
+        return $role->name != config('multitenancy.roles.super_admin');
+    }
+
+    public function create()
     {
         return false;
     }
 
-    public function view(User $user, Role $role): bool
+    public function update()
     {
         return false;
     }
 
-    public function create(User $user): bool
+    /**
+     * Determine whether the user can attach a user to a role.
+     *
+     * @param \App\User $user
+     * @param \App\user $model
+     *
+     * @return mixed
+     */
+    public function attachAnyUser(User $user, Role $model)
     {
-        return false;
-    }
-
-    public function update(User $user, Role $role): bool
-    {
-        return false;
-    }
-
-    public function delete(User $user, Role $role): bool
-    {
-        return false;
-    }
-
-    public function restore(User $user, Role $role): bool
-    {
-        return false;
-    }
-
-    public function forceDelete(User $user, Role $role): bool
-    {
-        return false;
+        return true;
     }
 }

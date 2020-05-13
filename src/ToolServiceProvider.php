@@ -21,13 +21,13 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::tools([
-                new \Vyuldashev\NovaPermission\NovaPermissionTool(),
+                \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+                    ->rolePolicy(config('multitenancy.policies.role', RolePolicy::class))
+                    ->permissionPolicy(config('multitenancy.policies.permission', PermissionPolicy::class)),
             ]);
         });
 
         Gate::policy(config('multitenancy.tenant_model'), TenantPolicy::class);
-        Gate::policy(config('permission.models.permission'), PermissionPolicy::class);
-        Gate::policy(config('permission.models.role'), RolePolicy::class);
     }
 
     /**
@@ -35,5 +35,6 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
     }
 }
