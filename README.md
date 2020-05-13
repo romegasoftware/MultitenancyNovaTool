@@ -178,5 +178,4 @@ protected $policies = [
 ];
 ```
 
-> **Hint**
-> You can also override the Permission and Role model's policy to be visible outside of the `admin` subdomain, which this package enforces by default.
+You can override the Permission and Role model policies by setting the policy file up in you `config/multitenancy.php` file. Look for `policies.role` and `policies.permission`.
