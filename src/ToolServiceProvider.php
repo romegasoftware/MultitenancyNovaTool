@@ -23,7 +23,9 @@ class ToolServiceProvider extends ServiceProvider
             Nova::tools([
                 \Vyuldashev\NovaPermission\NovaPermissionTool::make()
                     ->rolePolicy(config('multitenancy.policies.role', RolePolicy::class))
-                    ->permissionPolicy(config('multitenancy.policies.permission', PermissionPolicy::class)),
+                    ->permissionPolicy(config('multitenancy.policies.permission', PermissionPolicy::class))
+                    ->roleResource(config('multitenancy.resources.role', \Vyuldashev\NovaPermission\Role::class))
+                    ->permissionResource(config('multitenancy.resources.permission', \Vyuldashev\NovaPermission\Permission::class)),
             ]);
         });
 
