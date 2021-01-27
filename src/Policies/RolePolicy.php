@@ -2,7 +2,7 @@
 
 namespace RomegaDigital\MultitenancyNovaTool\Policies;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Contracts\Role;
 
