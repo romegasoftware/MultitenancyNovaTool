@@ -91,13 +91,13 @@ In order to display all related data to the `Tenant` model, you need to first im
 ```php
 // in app/Tenant.php
 
-namespace App;
+namespace App\Models;
 
 use RomegaDigital\Multitenancy\Models\Tenant as TenantModel;
 
 class Tenant extends TenantModel
 {
-  // ... define relationships
+    // ... define relationships
     public function products()
     {
         return $this->hasMany(\App\Product::class);
@@ -111,7 +111,7 @@ Next, update your config file to point to your new model.
 // in config/multitenancy.php
 
 // ...
-'tenant_model' => \App\Tenant::class,
+'tenant_model' => \App\Models\Tenant::class,
 ```
 
 Then create a Tenant Nova resource that extends the package's resource.
@@ -127,7 +127,7 @@ use RomegaDigital\MultitenancyNovaTool\Tenant as TenantResource;
 
 class Tenant extends TenantResource
 {
-    public static $model = \App\Tenant::class;
+    public static $model = \App\Models\Tenant::class;
 
     /**
     * Get the fields displayed by the resource.
