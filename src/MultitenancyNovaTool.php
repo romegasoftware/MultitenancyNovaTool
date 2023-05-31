@@ -4,6 +4,9 @@ namespace RomegaDigital\MultitenancyNovaTool;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuSection;
+use Illuminate\Support\Facades\Auth;
 
 class MultitenancyNovaTool extends Tool
 {
@@ -27,5 +30,19 @@ class MultitenancyNovaTool extends Tool
     public function renderNavigation()
     {
         return view('multitenancy-tool::navigation');
+    }
+    /**
+     * Build the menu that renders the navigation links for the tool.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function menu(Request $request)
+    {
+        if (Auth::user()->can('viewAny', app(\RomegaDigital\Multitenancy\Multitenancy::class)->getTenantClass())){
+            return MenuSection::make('Multitenancy')
+                ->path('/resources/tenants')
+                ->icon('user-group');
+        }
     }
 }

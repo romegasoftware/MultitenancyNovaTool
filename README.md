@@ -52,7 +52,7 @@ This package requires `Super Administrator` or `access admin` permissions. This 
 
 ## Usage
 
-New menu items labelled "Multitenancy" and "Roles & Permissions" will appear in your Nova app after installing this package.
+New menu items labeled "Multitenancy" and "Roles & Permissions" will appear in your Nova app after installing this package.
 
 To see the Tenant relation in the user detail view, add a `BelongsToMany` field to your `app/Nova/User` resource:
 
@@ -159,6 +159,7 @@ To scope Nova results to the Tenant being utilized, add the middleware to Nova:
 'middleware' => [
     // ...
     \RomegaDigital\Multitenancy\Middleware\TenantMiddleware::class,
+    \Vyuldashev\NovaPermission\ForgetCachedPermissions::class,
 ],
 ```
 
@@ -173,7 +174,7 @@ By default, the Multitenancy resource will only be visible on the `admin` subdom
 
 // ...
 protected $policies = [
-  // ...
+    // ...
     \RomegaDigital\Multitenancy\Models\Tenant::class => \App\Policies\TenantPolicy::class,
 ];
 ```
