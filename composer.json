@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "romegadigital/multitenancy": "*",
+        "romegadigital/multitenancy": "^4.0",
         "kiritokatklian/nova-permission": "^4.0"
     },
     "autoload": {
@@ -28,5 +28,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories":[
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ]
 }
